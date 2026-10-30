@@ -1,0 +1,30 @@
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# Python Bytecode and Caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PyQt / QtWebEngine runtime caches & storage
+# (QtWebEngine creates cache, cookies, and GPU data in local runs)
+.QtWebEngine/
+QtWebEngine/
+*.qmlc
+*.jsc
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Environment / Secrets (if you add configs later)
+.env

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Batbrowser</title>
+<style>
+  :root {
+    --bg: #0e0e0e;
+    --text: #e9e6df;
+    --muted: #7d7a74;
+    --line: #2a2924;
+    --accent: #b9a27a;
+    --serif: "Didot", "Bodoni 72", Georgia, serif;
+    --sans: "Avenir Next", "Helvetica Neue", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: var(--bg); color: var(--text); font-family: var(--sans);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    -webkit-font-smoothing: antialiased;
+  }
+  main { display: flex; flex-direction: column; align-items: center; }
+
+  .mark { width: 64px; fill: none; stroke: var(--accent); stroke-width: 1.4; stroke-linejoin: round; }
+
+  h1 {
+    margin: 34px 0 10px; font-family: var(--serif); font-weight: 400;
+    font-size: 40px; letter-spacing: .28em; padding-left: .28em; /* optical centering */
+  }
+  .tag {
+    color: var(--muted); font-size: 11px; letter-spacing: .38em; padding-left: .38em;
+    text-transform: uppercase; margin-bottom: 64px;
+  }
+
+  form { width: min(520px, 86vw); }
+  input[type=text] {
+    width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--line);
+    color: var(--text); font-family: var(--sans); font-weight: 300; font-size: 18px;
+    letter-spacing: .02em; text-align: center; padding: 14px 4px; outline: none;
+    transition: border-color .25s;
+  }
+  input[type=text]::placeholder { color: #55534e; }
+  input[type=text]:focus { border-bottom-color: var(--accent); }
+
+  nav { display: flex; gap: 40px; margin-top: 56px; flex-wrap: wrap; justify-content: center; }
+  nav a {
+    color: var(--muted); text-decoration: none; font-size: 11px; letter-spacing: .22em;
+    text-transform: uppercase; padding-bottom: 4px; border-bottom: 1px solid transparent;
+    transition: color .2s, border-color .2s;
+  }
+  nav a:hover { color: var(--text); border-bottom-color: var(--accent); }
+
+  #clock {
+    position: fixed; top: 26px; right: 32px; color: var(--muted); font-size: 12px;
+    letter-spacing: .2em; font-variant-numeric: tabular-nums;
+  }
+</style>
+</head>
+<body>
+  <div id="clock"></div>
+
+  <main>
+    <svg class="mark" viewBox="0 0 200 100" aria-label="Bat mark">
+      <path d="M100,12 L106,24 L116,22 C130,34 150,36 196,28 C182,42 178,60 160,64 C150,60 138,66 130,82 C124,72 114,70 108,78 L100,92 L92,78 C86,70 76,72 70,82 C62,66 50,60 40,64 C22,60 18,42 4,28 C50,36 70,34 84,22 L94,24 Z"/>
+    </svg>
+
+    <h1>batbrowser</h1>
+    <div class="tag">Search quietly</div>
+
+    <form action="https://duckduckgo.com/" method="get">
+      <input type="text" name="q" placeholder="Search" autofocus autocomplete="off" spellcheck="false">
+    </form>
+
+    <nav>
+      <a href="https://www.google.com">Google</a>
+      <a href="https://www.youtube.com">YouTube</a>
+      <a href="https://github.com">GitHub</a>
+      <a href="https://www.wikipedia.org">Wikipedia</a>
+      <a href="https://news.ycombinator.com">News</a>
+    </nav>
+  </main>
+
+  <script>
+    function tick() {
+      document.getElementById("clock").textContent =
+        new Date().toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"});
+    }
+    tick(); setInterval(tick, 10000);
+  </script>
+</body>
+</html>
